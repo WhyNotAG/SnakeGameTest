@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"D:\\Dev\\SnakeGameTest\\SnakeGame\\Source\\SnakeGame\\SnakeGame.Build.cs",
-		"D:\\Dev\\SnakeGameTest\\SnakeGame\\Source\\SnakeGame.Target.cs",
-		"D:\\Dev\\SnakeGameTest\\SnakeGame\\Source\\SnakeGameEditor.Target.cs"
-	],
-	"EngineVersion": "4.26.2"
-}

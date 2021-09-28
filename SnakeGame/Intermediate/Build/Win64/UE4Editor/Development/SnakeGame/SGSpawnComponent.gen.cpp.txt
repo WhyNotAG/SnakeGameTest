@@ -1,5 +1,0 @@
-D:\Dev\SnakeGameTest\SnakeGame\Intermediate\Build\Win64\UE4Editor\Development\SnakeGame\Definitions.SnakeGame.h
-D:\Games\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
-D:\Games\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-D:\Dev\SnakeGameTest\SnakeGame\Source\SnakeGame/Public/SGSpawnComponent.h
-D:\Dev\SnakeGameTest\SnakeGame\Intermediate\Build\Win64\UE4Editor\Inc\SnakeGame\SGSpawnComponent.generated.h
