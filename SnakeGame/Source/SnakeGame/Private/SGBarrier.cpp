@@ -6,7 +6,6 @@
 // Sets default values
 ASGBarrier::ASGBarrier()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	UStaticMesh* BodyMesh = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Engine/BasicShapes/Cube")).Object;
@@ -24,11 +23,9 @@ ASGBarrier::ASGBarrier()
 
 }
 
-// Called when the game starts or when spawned
 void ASGBarrier::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 

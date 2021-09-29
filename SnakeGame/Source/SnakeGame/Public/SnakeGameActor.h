@@ -37,6 +37,12 @@ protected:
 	TSubclassOf<ASGTailComponent> TailClass;
 
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+		TSubclassOf<UUserWidget> HUDWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+		TSubclassOf<UUserWidget> EndWidgetClass;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector2D DirectionMove;
 
@@ -48,6 +54,8 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	int32 GetAppleCount() const { return AppleCount; }
 
 private:
 	float Delay = 0.3f;

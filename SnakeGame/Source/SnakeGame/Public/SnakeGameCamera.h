@@ -22,6 +22,8 @@ class SNAKEGAME_API ASnakeGameCamera : public APawn
 public:
 	ASnakeGameCamera();
 
+	ASnakeGameActor* GetSnakeGameActor() const { return SGActor; }
+
 protected:
 	virtual void BeginPlay() override;
 

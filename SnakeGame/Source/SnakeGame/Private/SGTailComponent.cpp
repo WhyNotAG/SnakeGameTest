@@ -17,7 +17,7 @@ ASGTailComponent::ASGTailComponent()
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>("BoxCollider");
 	BoxCollider->SetRelativeLocation(GetActorLocation());
 	BoxCollider->SetGenerateOverlapEvents(true);
-	BoxCollider->SetBoxExtent(FVector(1.0f, 1.0f, 1.0f));
+	BoxCollider->SetBoxExtent(FVector::OneVector);
 	BoxCollider->SetupAttachment(StaticMesh);
 }
 

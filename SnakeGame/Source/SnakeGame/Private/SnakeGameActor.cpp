@@ -1,8 +1,10 @@
 #include "SnakeGame/Public/SnakeGameActor.h"
 
 #include "SGBarrier.h"
+#include "SGGameInstance.h"
 #include "SnakeGameApple.h"
 #include "SnakeGameCamera.h"
+#include "Blueprint/UserWidget.h"
 #include "Components/BoxComponent.h"
 #include "SnakeGame/Public/SGTailComponent.h"
 
@@ -25,7 +27,19 @@ ASnakeGameActor::ASnakeGameActor()
 void ASnakeGameActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if(!GetWorld()) { return; }
 	CreateSnake(FString("Head"));
+
+	auto const HUDWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidgetClass);
+	if(HUDWidget)
+	{
+		HUDWidget->AddToViewport();
+	}
+
+	APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+	PlayerController->bShowMouseCursor = false;
+	PlayerController->SetInputMode(FInputModeGameOnly());
 }
 
 void ASnakeGameActor::Tick(float DeltaTime)
@@ -95,14 +109,25 @@ void ASnakeGameActor::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCom
 		ASGBarrier* Barrier = Cast<ASGBarrier>(OtherActor);
 
 		if ((Tail && Tail->GetTailType().Equals("Tail")) || Barrier) {
-			UE_LOG(LogActor, Warning, TEXT("Death"));
+
+			if(!GetWorld()) { return; }
+
+			APlayerController* const PlayerController = Cast<APlayerController>(GEngine->GetFirstLocalPlayerController(GetWorld()));
+			PlayerController->SetPause(true);
+			PlayerController->bShowMouseCursor = true;
+			PlayerController->SetInputMode(FInputModeUIOnly());
+
+			auto const EndWidget = CreateWidget<UUserWidget>(GetWorld(), EndWidgetClass);
+			if (EndWidget)
+			{
+				EndWidget->AddToViewport();
+			}
 		}
 		else if(Apple)
 		{
 			Apple->Destroy();
 			CreateSnake("Tail");
-
-			
+			AppleCount++;
 		}
 	}
 }

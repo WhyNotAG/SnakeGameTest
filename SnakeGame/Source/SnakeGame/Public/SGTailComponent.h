@@ -16,11 +16,11 @@ public:
 	// Sets default values for this actor's properties
 	ASGTailComponent();
 
-	FString GetTailType() { return TailType; }
+	FString GetTailType() const { return TailType; }
 	void SetTailType(FString Type) { TailType = Type; }
 
-	FVector GetLocation() { return StaticMesh->GetRelativeLocation();}
-	void SetLocation(FVector Vector) { StaticMesh->SetRelativeLocation(Vector);}
+	FVector GetLocation() const { return StaticMesh->GetRelativeLocation();}
+	void SetLocation(FVector const Vector ) const { StaticMesh->SetRelativeLocation(Vector);}
 
 protected:
 	// Called when the game starts or when spawned
