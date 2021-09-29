@@ -2,12 +2,12 @@
 
 
 #include "SGSpawnComponent.h"
-
+#include "SnakeGameApple.h"
 // Sets default values
 ASGSpawnComponent::ASGSpawnComponent()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = false;
 
 }
 
@@ -15,13 +15,15 @@ ASGSpawnComponent::ASGSpawnComponent()
 void ASGSpawnComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &ASGSpawnComponent::SpawnApple, SpawnUpdateTime, true, SpawnDelay);
+
 }
 
-// Called every frame
-void ASGSpawnComponent::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 
+void ASGSpawnComponent::SpawnApple()
+{
+	FVector const Location(FVector(FMath::RandRange(MinX, MaxX), FMath::RandRange(MinY, MaxY), 20.0f));
+	FRotator const Rotation(FRotator::ZeroRotator);
+	ASnakeGameApple* Apple = GetWorld()->SpawnActor<ASnakeGameApple>(AppleSubclass, Location, Rotation);
 }
 

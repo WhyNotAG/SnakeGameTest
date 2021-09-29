@@ -7,6 +7,7 @@
 #include "SnakeGameCamera.generated.h"
 
 
+class ASGSpawnComponent;
 class ASnakeGameActor;
 class ASGTailComponent;
 class USpringArmComponent;
@@ -38,6 +39,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ASnakeGameActor* SGActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn")
+	ASGSpawnComponent* SpawnComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn")
+	TSubclassOf<ASGSpawnComponent> SpawnComponentSubclass;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	float ArmLength = 2000.0f;

@@ -1,10 +1,10 @@
 #include "SnakeGame/Public/SnakeGameActor.h"
 
+#include "SGBarrier.h"
 #include "SnakeGameApple.h"
 #include "SnakeGameCamera.h"
 #include "Components/BoxComponent.h"
 #include "SnakeGame/Public/SGTailComponent.h"
-
 
 DEFINE_LOG_CATEGORY_STATIC(LogGameActor, All, All)
 
@@ -18,6 +18,7 @@ ASnakeGameActor::ASnakeGameActor()
 	Head->SetBoxExtent(FVector(Step / 2, Step / 2, Step / 2));
 	Head->OnComponentBeginOverlap.AddDynamic(this, &ASnakeGameActor::OnComponentBeginOverlap);
 	SetRootComponent(Head);
+
 }
 
 
@@ -91,14 +92,17 @@ void ASnakeGameActor::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCom
 	{
 		ASGTailComponent* Tail = Cast<ASGTailComponent>(OtherActor);
 		ASnakeGameApple* Apple = Cast<ASnakeGameApple>(OtherActor);
-		
-		if (Tail && Tail->GetTailType().Equals("Tail")) {
+		ASGBarrier* Barrier = Cast<ASGBarrier>(OtherActor);
+
+		if ((Tail && Tail->GetTailType().Equals("Tail")) || Barrier) {
 			UE_LOG(LogActor, Warning, TEXT("Death"));
 		}
 		else if(Apple)
 		{
 			Apple->Destroy();
 			CreateSnake("Tail");
+
+			
 		}
 	}
 }

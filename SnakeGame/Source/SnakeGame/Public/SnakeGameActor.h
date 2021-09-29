@@ -36,6 +36,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TSubclassOf<ASGTailComponent> TailClass;
 
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector2D DirectionMove;
 
@@ -51,6 +52,8 @@ public:
 private:
 	float Delay = 0.3f;
 	float BufferTime = 0.0f;
+
+	int32 AppleCount = 0;
 	TArray<ASGTailComponent*> SnakeBody = {};
 	void MoveSnake();
 	

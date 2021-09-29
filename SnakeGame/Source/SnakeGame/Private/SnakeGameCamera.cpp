@@ -2,6 +2,8 @@
 
 
 #include "SnakeGame/Public/SnakeGameCamera.h"
+
+#include "SGSpawnComponent.h"
 #include "SnakeGame/Public/SnakeGameActor.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -25,6 +27,8 @@ ASnakeGameCamera::ASnakeGameCamera()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	CameraComponent->SetupAttachment(SpringArmComponent);
 
+	//SpawnComponent = CreateDefaultSubobject<ASGSpawnComponent>("SpawnComponent");
+
 }
 
 void ASnakeGameCamera::BeginPlay()
@@ -35,6 +39,7 @@ void ASnakeGameCamera::BeginPlay()
 		FVector Location(GetActorLocation());
 		FRotator Rotation(FRotator::ZeroRotator);
 		SGActor = GetWorld()->SpawnActor<ASnakeGameActor>(SGActorSubclass, Location, Rotation);
+		SpawnComponent = GetWorld()->SpawnActor<ASGSpawnComponent>(SpawnComponentSubclass, Location, Rotation);
 	}
 }
 

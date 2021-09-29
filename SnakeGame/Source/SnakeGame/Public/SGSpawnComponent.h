@@ -6,21 +6,36 @@
 #include "GameFramework/Actor.h"
 #include "SGSpawnComponent.generated.h"
 
+class ASnakeGameApple;
+
 UCLASS()
 class SNAKEGAME_API ASGSpawnComponent : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ASGSpawnComponent();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+		TSubclassOf<ASnakeGameApple> AppleSubclass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Spawn")
+		float SpawnDelay = 1.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Spawn")
+		float SpawnUpdateTime = 3.0f;
+
+
+private:
+	void SpawnApple();
+	FTimerHandle SpawnTimerHandle;
+	float const MaxX = 550.0f;
+	float const MinX = -550.0f;
+
+	float const MaxY = 950.0f;
+	float const MinY = -950.0f;
 
 };
